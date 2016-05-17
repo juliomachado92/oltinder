@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".Controler.LoginActivity"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:padding="16dp"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/logo"
+                android:cropToPadding="false" />
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp">
+
+                <EditText
+                    android:id="@+id/etxtEmail"
+                    android:hint="Email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:background="@drawable/round_field"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    android:drawableLeft="@drawable/ic_email_black_18dp"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                     />
+
+                <EditText
+                    android:id="@+id/etxtPassword"
+                    android:layout_marginTop="10dp"
+                    android:hint="Senha"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:background="@drawable/round_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_lock_black_18dp"
+                    android:padding="10dp" />
+
+
+                <Button
+                    android:id="@+id/btnLogin"
+                    style="@style/PGTheme.ButtonSimple"
+                    android:layout_marginTop="30dp"
+                    android:text="Entrar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btnCreate"
+                    style="@style/PGTheme.ButtonSimple"
+                    android:layout_marginTop="10dp"
+                    android:text="Criar Conta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

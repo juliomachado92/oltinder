@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_edbcf5d3af78f26829c98a2627cb78c31a24ea3f\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_c58cecbfb561b8e8cea69f6bc2ebec13d3112d4c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.3.0_2aeaa6317c74ae895111649d1e563f3b36418e09\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\exploded-aar\com.android.support\design\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.3.0_a9f92e0ff45a0e10d8200b5f87f89be102f1f496\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.3.0_de89ebe8b56f9f56682fe087da97d20566a3b5ba\classes.dex" />
+    </item>
+    <item
+        jar="D:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_7cd194c6f3f4f301c835750b93d55cdb37d12acf\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\julio\AndroidStudioProjects\OLTinder\app\libs\backendless.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="b942e42c6f40417cfe665c819e5909f020ca03e2">
+        <dex dex="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\transforms\dex\debug\folders\1000\2\backendless_57aef2c3802a2391c718aa393b16a5d91677ab1a\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d3d139b4db6bc3351961bbf0fc21da9bd0515832">
+        <dex dex="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_0cf418b478f5959e7af7f45ee515371f71565f9d\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.3.0_5ef1656cd1ed1cbfdc2a81d1be36a86ff9b1a36d\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="158cde13d3bb7ee310efc3871ff84e9ce7e43002">
+        <dex dex="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_9994f56374de4e3bf71ba98de7c1011c7df19790\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="C:\Users\julio\AndroidStudioProjects\OLTinder\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.3.0_aa2ee47565daec3aaeca1e1ee8cffef6102ebe1d\classes.dex" />
+    </item>
+
+</items>
