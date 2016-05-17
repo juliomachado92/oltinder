@@ -1,5 +1,6 @@
 package julio.puc.br.oltinder.Controler;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +23,7 @@ import com.backendless.async.callback.BackendlessCallback;
 import com.backendless.exceptions.BackendlessFault;
 
 import julio.puc.br.oltinder.Fragment.ProductsFragment;
+import julio.puc.br.oltinder.Fragment.SellerFragment;
 import julio.puc.br.oltinder.R;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , ProductsFragment.OnFragmentInteractionListener{
@@ -31,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle toggle;
     private FloatingActionButton fab;
     private Toolbar toolbar;
+    private SharedPreferences sharedPreferences;
+
+    private int userType;
 
 
     @Override
@@ -38,36 +43,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        BackendlessUser user = new BackendlessUser();
-//        user.setEmail("teste@gmail.com");
-//        user.setPassword("oltinder");
-
-//        Backendless.UserService.register(user, new BackendlessCallback<BackendlessUser>() {
-//            @Override
-//            public void handleResponse(BackendlessUser backendlessUser) {
-//                Log.i( TAG, backendlessUser.getEmail() + " successfully registered" );
-//            }
-//
-//            @Override
-//            public void handleFault(BackendlessFault fault) {
-//                Log.e(TAG, "ERRO ao criar novo usuario ");
-//            }
-//        });
+        sharedPreferences = getSharedPreferences(getString(R.string.prev_title), CONTEXT_RESTRICTED);
+        userType = sharedPreferences.getInt(getString(R.string.prev_user_type),-1);
 
         //default
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.title_activity_main));
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        fab.setVisibility(View.GONE);
+//        fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+//        fab.setVisibility(View.GONE);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
@@ -81,12 +73,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView txtNameUser = (TextView)navigationView.getHeaderView(0).findViewById(R.id.txtUserName);
         TextView txtEmailUser = (TextView)navigationView.getHeaderView(0).findViewById(R.id.txtUserEmail);
 
-        txtNameUser.setText("Suporte");
-        txtEmailUser.setText("suporte@oltinder.com.br");
+        txtNameUser.setText(sharedPreferences.getString(getString(R.string.prev_user_name),""));
+        txtEmailUser.setText(sharedPreferences.getString(getString(R.string.prev_user_email),""));
 
-        //chamar Fragmento
-        ProductsFragment fragment = new ProductsFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, fragment).commit();
+        if(userType == 2 ){
+            SellerFragment fragment = new SellerFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, fragment).commit();
+            
+        }else{
+            //chamar Fragmento padrão de usuario
+            ProductsFragment fragment = new ProductsFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, fragment).commit();
+        }
+
+
 
     }
 

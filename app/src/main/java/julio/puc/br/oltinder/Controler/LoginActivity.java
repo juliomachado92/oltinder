@@ -1,6 +1,7 @@
 package julio.puc.br.oltinder.Controler;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,8 @@ public class LoginActivity extends AppCompatActivity{
     private EditText etxtSenha;
     public String TAG = "OLTINDER";
 
+    private SharedPreferences sharedPreferences;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class LoginActivity extends AppCompatActivity{
         Backendless.initApp(this,"978405B2-3D41-0989-FFCD-5110C26D2600",
                 "F10EAB72-54F5-AB52-FFBE-FC4767CFFB00", appVersion);
 
+        sharedPreferences = getSharedPreferences(getString(R.string.prev_title), CONTEXT_RESTRICTED);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,14 +66,22 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     public void login(){
-        String email = etxtEmail.getText().toString();
+
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        final String email = etxtEmail.getText().toString();
         String senha  = etxtSenha.getText().toString();
 
         Backendless.UserService.login(email, senha, new AsyncCallback<BackendlessUser>() {
             @Override
             public void handleResponse(BackendlessUser backendlessUser) {
+
+                editor.putString(getString(R.string.prev_user_email),backendlessUser.getEmail());
+                editor.putString(getString(R.string.prev_user_name),backendlessUser.getProperty("name").toString());
+                editor.putInt(getString(R.string.prev_user_type),Integer.parseInt(backendlessUser.getProperty("TipoDeUsuario").toString()));
+
                 Intent it  = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(it);
+
             }
 
             @Override

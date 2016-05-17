@@ -16,4 +16,11 @@
         <item>COMPRADOR</item>
         <item>VENDEDOR</item>
     </string-array>
+
+
+    <string name="prev_title">OLTINDER</string>
+    <string name="prev_user_name">user_name</string>
+    <string name="prev_user_email">user_email</string>
+    <string name="prev_user_type">user_type</string>
+    <string name="prev">OLTINDER</string>
 </resources>
