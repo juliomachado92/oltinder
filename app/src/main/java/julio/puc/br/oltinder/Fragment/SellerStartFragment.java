@@ -159,6 +159,7 @@ public class SellerStartFragment extends Fragment {
                         //capture photo
                         Log.i(MainActivity.TAG,"TIRAR FOTO ");
                         dispatchTakePictureIntent();
+                        productsAdapter.notifyDataSetChanged();
 
                     }
                 });
@@ -180,25 +181,6 @@ public class SellerStartFragment extends Fragment {
             }
         });
 
-
-        //PEgar todos elementos ddo tipo Products
-//        Backendless.Persistence.of(Products.class).find(new AsyncCallback<BackendlessCollection<Products>>() {
-//            @Override
-//            public void handleResponse(BackendlessCollection<Products> response) {
-//                Log.i(MainActivity.TAG,"SIZE " + response.getTotalObjects());
-//                Toast.makeText(getContext(),"SIZE"+ response.getTotalObjects(),Toast.LENGTH_SHORT).show();
-//
-//                productsAdapter = new ProductAdapter(response.getData(),getContext());
-//                listViewProducts.setAdapter(productsAdapter);
-//
-//            }
-//
-//            @Override
-//            public void handleFault(BackendlessFault backendlessFault) {
-//                Log.e(MainActivity.TAG,"ERRO RETURN: " + backendlessFault.toString());
-//                Toast.makeText(getContext(),"RETURN errodd",Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
         String whereClause = "sellername =  '" + currentUser.getProperty("name")+"'";
         BackendlessDataQuery dataQuery = new BackendlessDataQuery();
@@ -277,7 +259,7 @@ public class SellerStartFragment extends Fragment {
             Bundle extras = data.getExtras();
             imageBitmap = (Bitmap) extras.get("data");
             takePhoto = true;
-            imgPhoto = (ImageView) dialogView.findViewById(R.id.imgPhoto);
+            ImageView imgPhoto = (ImageView) dialogView.findViewById(R.id.imgPhoto);
             imgPhoto.setImageBitmap(imageBitmap);
         }
     }

@@ -181,14 +181,35 @@ public class ProductsFragment extends Fragment implements MyProduct.OnFragmentIn
     }
 
     public void starDown(int position){
-        try {
-            URL url = new URL("https://api.backendless.com/978405B2-3D41-0989-FFCD-5110C26D2600/v1/files/"
-                    + productsList.get(position).getImageLocation());
-            DonwloadFileTask donwloadFileTask = new DonwloadFileTask(position);
-            donwloadFileTask.execute(url);
 
-        }catch (MalformedURLException e ){
-            e.printStackTrace();
+        if(position == productsList.size()) {
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Atenção !")
+                    .setMessage("Não  existe mais produtos para você \n deseja rever os produtos ? ")
+                    .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            MainActivity.myProducts = productsListLike;
+
+                            MyProduct fragment  = new MyProduct();
+                            FragmentManager fm = getFragmentManager();
+                            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                            fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                            fragmentTransaction.commit();
+                        }
+                    })
+                    .show();
+
+        }else{
+            try {
+                URL url = new URL("https://api.backendless.com/978405B2-3D41-0989-FFCD-5110C26D2600/v1/files/"
+                        + productsList.get(position).getImageLocation());
+                DonwloadFileTask donwloadFileTask = new DonwloadFileTask(position);
+                donwloadFileTask.execute(url);
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -206,32 +227,43 @@ public class ProductsFragment extends Fragment implements MyProduct.OnFragmentIn
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(position == productsList.size() - 1){
-                     new AlertDialog.Builder(getContext())
-                            .setTitle("Atenção !")
-                            .setMessage("Não  existe mais produtos para você \n deseja rever os produtos ? ")
-                             .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                 @Override
-                                 public void onClick(DialogInterface dialog, int which) {
-                                     MainActivity.myProducts = productsListLike;
 
-                                     MyProduct fragment  = new MyProduct();
-                                     FragmentManager fm = getFragmentManager();
-                                     FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                                     fragmentTransaction.replace(R.id.fragmentContainer, fragment);
-                                     fragmentTransaction.commit();
-                                 }
-                             })
-                             .show();
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Gostou !")
+                        .setMessage("Voce se interesou pelo produto '" + products.getProductname()+"', \n" +
+                                "Deseja enviar email para o vendedor ' "+ products.getSellername()+"' ? ")
+                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                productsListLike.add(products);
+                                new AlertDialog.Builder(getContext())
+                                        .setTitle("Gostou")
+                                        .setMessage("Email enviado de '"+Backendless.UserService.CurrentUser().getEmail().toString()+"'\n" +
+                                                "Para : "+ products.getSellername())
+                                        .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                starDown(position+1);
+                                            }
+                                        })
+                                        .show();
+                            }
+                        })
+                        .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                starDown(position+1);
+                            }
+                        })
+                        .show();
+            }
 
+        });
 
-                }else{
-                   // setElements(productsList.get(position+1),position+1);
-                    productsListLike.add(products);
-                    starDown(position+1);
-
-                }
-
+        btnDont.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                starDown(position+1);
             }
         });
 
