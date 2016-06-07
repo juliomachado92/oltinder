@@ -1,5 +1,8 @@
 package julio.puc.br.oltinder.Controler;
 
+import android.content.Intent;
+import android.support.v4.app.FragmentTransaction;
+
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,35 +18,50 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
+import com.backendless.async.callback.AsyncCallback;
 import com.backendless.async.callback.BackendlessCallback;
 import com.backendless.exceptions.BackendlessFault;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import julio.puc.br.oltinder.Fragment.MyProduct;
 import julio.puc.br.oltinder.Fragment.ProductsFragment;
-import julio.puc.br.oltinder.Fragment.SellerFragment;
+import julio.puc.br.oltinder.Fragment.SellerStartFragment;
+import julio.puc.br.oltinder.Model.Constants;
+import julio.puc.br.oltinder.Model.Products;
 import julio.puc.br.oltinder.R;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , ProductsFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener ,
+        ProductsFragment.OnFragmentInteractionListener,
+        SellerStartFragment.OnFragmentInteractionListener,
+        MyProduct.OnFragmentInteractionListener {
 
-    public String TAG = "OLTINDER";
+    public static String TAG = "OLTINDER";
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private FloatingActionButton fab;
     private Toolbar toolbar;
     private SharedPreferences sharedPreferences;
 
-    private int userType;
+    public static List<Products>myProducts;
 
+
+    private int userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sharedPreferences = getSharedPreferences(getString(R.string.prev_title), CONTEXT_RESTRICTED);
+        //Backendless.initApp(this, Constants.APP_ID,Constants.SECRET_KEY, Constants.APP_VERSION);
+
+        sharedPreferences = getSharedPreferences(getString(R.string.prev_title),CONTEXT_RESTRICTED);
         userType = sharedPreferences.getInt(getString(R.string.prev_user_type),-1);
 
         //default
@@ -76,12 +94,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         txtNameUser.setText(sharedPreferences.getString(getString(R.string.prev_user_name),""));
         txtEmailUser.setText(sharedPreferences.getString(getString(R.string.prev_user_email),""));
 
+        //ProductsFragment fragment = new ProductsFragment();
+//        SellerStartFragment fragment2 = new SellerStartFragment();
+//        getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, fragment2).commit();
+
         if(userType == 2 ){
-            SellerFragment fragment = new SellerFragment();
+            Log.i(TAG, "TIPO 2 VENDEDOR");
+            SellerStartFragment fragment = new SellerStartFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, fragment).commit();
-            
+
         }else{
             //chamar Fragmento padrão de usuario
+            Log.i(TAG, "TIPO 1 USUARIO");
             ProductsFragment fragment = new ProductsFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, fragment).commit();
         }
@@ -128,18 +152,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_send) {
-
+       if (id == R.id.nav_MyProducts) {
+            //MyProduct fragment = new MyProduct();
+            //getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, fragment).commit();
         } else if(id == R.id.nav_login){
-            //chamar tela de login para vendedor
+            //fazer Logout
+            Backendless.UserService.logout(new AsyncCallback<Void>() {
+                @Override
+                public void handleResponse(Void aVoid) {
+                    Log.i(TAG,"Logout");
+                    Intent it  =  new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(it);
+                    finish();
+                }
+
+                @Override
+                public void handleFault(BackendlessFault backendlessFault) {
+
+                }
+            });
+
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -151,4 +184,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+
+
 }

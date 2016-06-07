@@ -1,5 +1,6 @@
 package julio.puc.br.oltinder.Controler;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,12 +17,15 @@ import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 
+import julio.puc.br.oltinder.Model.Constants;
 import julio.puc.br.oltinder.R;
 
 /**
  * Created by julio on 16/05/2016.
  */
 public class LoginActivity extends AppCompatActivity{
+
+
 
     private Button btnLogin;
     private Button btnCreate;
@@ -44,9 +48,7 @@ public class LoginActivity extends AppCompatActivity{
         btnCreate = (Button)findViewById(R.id.btnCreate);
 
         //criar banco de dados
-        String appVersion = "v1";
-        Backendless.initApp(this,"978405B2-3D41-0989-FFCD-5110C26D2600",
-                "F10EAB72-54F5-AB52-FFBE-FC4767CFFB00", appVersion);
+        Backendless.initApp(this, Constants.APP_ID,Constants.SECRET_KEY, Constants.APP_VERSION);
 
         sharedPreferences = getSharedPreferences(getString(R.string.prev_title), CONTEXT_RESTRICTED);
 
@@ -78,6 +80,7 @@ public class LoginActivity extends AppCompatActivity{
                 editor.putString(getString(R.string.prev_user_email),backendlessUser.getEmail());
                 editor.putString(getString(R.string.prev_user_name),backendlessUser.getProperty("name").toString());
                 editor.putInt(getString(R.string.prev_user_type),Integer.parseInt(backendlessUser.getProperty("TipoDeUsuario").toString()));
+                editor.commit();
 
                 Intent it  = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(it);

@@ -75,8 +75,10 @@ public class CreateAccount extends AppCompatActivity  implements AdapterView.OnI
                     public void handleResponse(BackendlessUser backendlessUser) {
                         //resposta positiva criaou aconta
                         Log.i( TAG, backendlessUser.getEmail() + " successfully registered" );
-                        Intent it = new Intent(getApplicationContext(),MainActivity.class);
+                        Toast.makeText(getApplicationContext(),"Conta Criada Com Sucesso !",Toast.LENGTH_SHORT).show();
+                        Intent it = new Intent(getApplicationContext(),LoginActivity.class);
                         startActivity(it);
+                        finish();
                     }
 
                     @Override
@@ -114,7 +116,7 @@ public class CreateAccount extends AppCompatActivity  implements AdapterView.OnI
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getApplicationContext(),"Conteudo " + parent.getItemAtPosition(position).toString(),Toast.LENGTH_SHORT).show();
         Log.e(TAG,"Select : "+ parent.getItemAtPosition(position).toString());
-        item =parent.getItemAtPosition(position).toString();
+        item = parent.getItemAtPosition(position).toString();
         itemPosition = position;
     }
 

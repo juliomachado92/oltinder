@@ -1,37 +1,45 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="julio.puc.br.oltinder.Fragment.ProductsFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="julio.puc.br.oltinder.Fragment.ProductsFragment"
+                android:padding="5dp">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="Nome Do Produto"
         android:id="@+id/txtNameProduct"
         android:textSize="36dp"
         android:textStyle="italic" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:layout_gravity="center_horizontal|top"
-        android:src="@drawable/ps4" />
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/img_list_products"
+        android:layout_below="@+id/txtNameProduct"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/btnLike"
+        android:padding="5dp"
+        />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Like"
-        android:id="@+id/button"
-        android:layout_gravity="right|bottom" />
+        android:id="@+id/btnLike"
+        android:layout_gravity="right|bottom"
+        android:layout_alignTop="@+id/btnDont"
+        android:layout_alignParentEnd="true"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="don&apos;t Like"
-        android:id="@+id/button2"
-        android:layout_gravity="left|bottom" />
+        android:id="@+id/btnDont"
+        android:layout_gravity="left|bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"/>
 
-</FrameLayout>
+</RelativeLayout>
